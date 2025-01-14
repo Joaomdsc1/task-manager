@@ -2,6 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 const cors = require('cors');
+const taskRoutes = require('./routes/taskRoutes'); // Importando as rotas
 
 dotenv.config();
 
@@ -14,7 +15,10 @@ app.use(cors());
 // Conecte ao banco de dados
 connectDB();
 
-// Rotas simples para teste
+// Rotas
+app.use('/api', taskRoutes); // Todas as rotas de tarefas começarão com /api
+
+// Rota simples para teste
 app.get('/', (req, res) => {
   res.send('API está funcionando!');
 });
